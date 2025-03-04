@@ -52,15 +52,15 @@ app.get("/collectibles/:idx", (req, res) => {
 //exercise#4
 
 app.get("/shoes", (req, res) => {
-  let minPrice = req.query["min-price"];
-  let maxPrice = req.query["max-price"];
+  let minPrice = parseFloat(req.query["min-price"]);
+  let maxPrice = parseFloat(req.query["max-price"]);
   let type = req.query.type;
   let shoeList = [];
 
   shoeList = shoes.filter((shoe) => {
     return (
-      (!minPrice || shoe.price >= Number(minPrice)) &&
-      (!maxPrice || shoe.price <= Number(maxPrice)) &&
+      (!minPrice || shoe.price >= minPrice) &&
+      (!maxPrice || shoe.price <= maxPrice) &&
       (!type || shoe.type === type)
     );
   });
